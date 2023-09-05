@@ -7,8 +7,10 @@ urlpatterns = [
     path('perguntas', views.ultimas_perguntas, name='ultimas_perguntas'),
     path('sobre/', views.sobre, name='sobre'),
     path('pergunta/<int:question_id>', views.exibe_questao, name='exibe_questao'),
-    path('cadastrar', views.QuestionCreateView.as_view(), name="question-create")
-   
+    path('cadastrar', views.QuestionCreateView.as_view(), name="question-create"),
+    path('perguntas/list', views.ultimas_perguntas, name='polls_list'),
+    path('perguntas/add', views.QuestionCreateView.as_view(), name="poll_add"),
+
 ]
 
 

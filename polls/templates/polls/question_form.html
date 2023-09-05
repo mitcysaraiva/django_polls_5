@@ -2,12 +2,19 @@
 
 
 
-<h2>
-    cadastrar enquete
-</h2>
 
-<form method="post"> 
+{% extends '_layout1.html' %} <!-- herda tudo que já tem em _layout1.html -->
+{% block content %} <!-- substitui o bloco content em _layout1.html -->
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">Criando uma Pergunta</h5>
+</div>
+<div class="card-body">
+<form method="post">
 {% csrf_token %}
-{{form.as_p}}
-<input type="submit">
+{{ form.as_p }}
+<button type="submit" class="btn btn-success">Salvar</button>
 </form>
+</div>
+</div>
+{% endblock %} 
