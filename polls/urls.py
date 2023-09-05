@@ -14,6 +14,10 @@ urlpatterns = [
           views.QuestionUpdateView.as_view(),
           name="poll_edit"
 ),
+    path('pergunta/<int:pk>/delete',
+        views.QuestionDeleteView.as_view(),
+        name="poll_delete"
+),
 
 
 ]
