@@ -1,7 +1,7 @@
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, ListView, TemplateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from polls.models import Question
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView, TemplateView
 
 
 from django.shortcuts import render
@@ -48,7 +48,7 @@ from django.urls import reverse_lazy
 class QuestionCreateView(CreateView):
     model= Question
     fields= ('question_text', 'pub_date')
-    success_url: reverse_lazy('index')
+    success_url = reverse_lazy('index')
 
 class QuestionCreateView(CreateView):
     model = Question
