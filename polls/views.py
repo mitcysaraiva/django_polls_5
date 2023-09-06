@@ -83,6 +83,8 @@ class QuestionListView(ListView):
     model = Question
     template_name = 'polls/question_list.html'
     context_object_name = 'questions'
+    paginate_by = 5 # quantidade de itens por página
+    ordering = ['-pub_date'] 
 
 class SobreTemplateView(TemplateView):
     template_name = 'polls/sobre.html'
