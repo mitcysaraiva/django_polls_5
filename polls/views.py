@@ -3,6 +3,9 @@ from django.urls import reverse_lazy
 from polls.models import Question
 from django.views.generic import DetailView, ListView, TemplateView
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from django.shortcuts import render
 
