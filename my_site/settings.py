@@ -144,6 +144,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
-LOGIN_REDIRECT_URL = '/admin'
-LOGOUT_REDIRECT_URL = '/admin'
+LOGIN_REDIRECT_URL = '/polls/perguntas'
+LOGOUT_REDIRECT_URL = '/polls/perguntas'
 AUTH_USER_MODEL = 'accounts.CustomUser'
