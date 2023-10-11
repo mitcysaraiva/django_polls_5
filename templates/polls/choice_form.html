@@ -1,0 +1,57 @@
+{% extends '_layout1.html 
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">{{ form_title }}</h5>
+    </div>
+    
+    <div class="card-body">
+        <form method="post">
+            
+            {% csrf_token %}
+            
+            {{ form.as_p}}
+            
+            <button type="submit" class="btn btn-success">Salvar</button>
+            
+        </form>
+        
+        
+    </div>
+</div>
+
+{% endblock %}
+
+{{ form.as_p }}
+<button type="submit" class="btn btn-success">Salvar</button>
+na edição das pergunta
+</form>
+{% if object %} -
+apenas exibe o bloco se existir objeto no contexto, isto eh um pergunta sendo editada.
+<div class="mt-5">
+    <h3>Alternativas de Pergunta</h3>
+    <a href="{% url 'choice_add' pk=object.id %}" class="btn btn-primary mb-5">
+        + Incluir Alternativa
+    </a>
+    <ul>
+        {% for choice in question_choices %}
+        <li>
+            {{choice.choice_text}} &nbsp;
+            <a href="{% url 'choice_edit' pk=choice.id %}" class="link-secondary">
+                Editar
+            </a>
+            <a href="{% url 'choice_delete' pk-choice.id %}" class="link-secondary">
+                Excluir
+
+            </a>
+
+        </li>
+
+        {% empty %}
+        <li>Não existem alternativas para a pergunta</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endif %}
+</div>

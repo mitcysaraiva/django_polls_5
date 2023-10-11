@@ -112,7 +112,7 @@ class SobreTemplateView(TemplateView):
 class ChoiceCreateView(CreateView): 
     model = Choice
     template_name = 'polls/choice_form.html'
-    fields ('choice_text',)
+    fields=('choice_text',)
     success_message = 'Alternativa registrada com sucesso!'
 
     def dispatch(self, request, *args, **kwargs): 
@@ -149,7 +149,7 @@ class ChoiceUpdateView(UpdateView):
         context['form_title'] = 'Editando alternativa'
         return context
 
-    def form valid (self, request, *args, **kwargs):
+    def form_valid (self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super (ChoiceUpdateView, self).form_valid (request, *args, **kwargs)
 
@@ -164,7 +164,7 @@ class ChoiceDeleteView(LoginRequiredMixin, DeleteView):
 
     def form_valid(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message) 
-        return super (Choice DeleteView, self).form_valid (request, *args, **kwargs)
+        return super (ChoiceDeleteView, self).form_valid (request, *args, **kwargs)
 
     def get_success_url(self, *args, **kwargs): 
         question_id = self.object.question.id 
