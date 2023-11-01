@@ -53,7 +53,7 @@ class QuestionCreateView(CreateView):
     fields= ('question_text', 'pub_date')
     success_url = reverse_lazy('index')
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     template_name = 'polls/question_form.html'
     fields = ('question_text', 'pub_date', )
@@ -91,6 +91,7 @@ class QuestionDeleteView(DeleteView):
     success_message = 'Pergunta excluída com sucesso.'
 
     def form_valid(self, request, *args, **kwargs):
+        form.instance.author = self.request.user
         messages.success(self.request, self.success_message)
         return super(QuestionDeleteView, self).form_valid(request, *args, **kwargs)
 
