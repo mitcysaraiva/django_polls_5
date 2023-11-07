@@ -1,0 +1,26 @@
+{% extends '_layout1.html' %}
+
+{% block content %} {# "miolo" do _layout1.html #}
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Pergunta</h5>
+    </div>
+    <div class="card-body">
+        {% if question.author %}
+            <strong>Autor:</strong> {{ question.author.username }}
+        {% else %}
+            <strong>Autor:</strong> Desconhecido
+        {% endif %} <br>
+        <p>
+            {{ question.question_text }}
+            <a href="{% url 'poll_edit' pk=question.id %}" class="link-secondary">
+                Editar
+            </a> &nbsp;
+            <a href="{% url 'poll_delete' pk=question.id %}" class="link-secondary">
+                Excluir
+            </a>
+        </p>
+        <p>Data de publicação: {{ question.pub_date }}</p>
+    </div>
+</div>
+{% endblock %}
