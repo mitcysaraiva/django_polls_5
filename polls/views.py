@@ -7,6 +7,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
+from django.core.exceptions import ValidationError
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 from django.shortcuts import render, get_object_or_404
@@ -180,7 +184,7 @@ class ChoiceDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self, *args, **kwargs): 
         question_id = self.object.question.id 
         return reverse_lazy('poll_edit', kwargs={'pk': question_id})
-
+@login_required
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if request.method == 'POST':
@@ -188,6 +192,8 @@ def vote(request, question_id):
             selected_choice = question.choice_set.get(pk=request.POST["choice"])
         except (KeyError, Choice.DoesNotExist):
             messages.error(request, 'Selecione uma alternativa para votar')
+        except (ValidationError) as error:
+            messages.error(request, error.message)
         else:
             selected_choice.votes += 1
             selected_choice.save()
