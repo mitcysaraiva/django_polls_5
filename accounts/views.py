@@ -8,12 +8,15 @@ from django.contrib.auth.hashers import make_password # para criptografar a senh
 from django.contrib import messages
 from django.views.generic import TemplateView
 from polls.models import QuestionUser
-
+from django.views.generic import TemplateView
 
 from django.contrib.auth import get_user_model
 User = get_user_model() # obtém o model padrão para usuários do Django
 
 from accounts.forms import AccountSignupForm # importa o form de registro
+
+from polls.models import QuestionUserdf
+
 
 class AccountCreateView(CreateView):
     model = User # conecta o model a view
@@ -51,4 +54,15 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView):
         voted = QuestionUser.objects.filter(user=self.request.user)
         context['questions_voted'] = voted
 
+        return context
+
+
+class AccountTemplateView(LoginRequiredMixin, TemplateView):
+     template_name = 'accounts/user_detail.html' 
+     context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        context = super(AccountTemplateView, self).get_context_data(**kwargs)
+        voted = QuestionUser.objects.filter(user=self.request.user) 
+        context['questions voted'] = voted
         return context

@@ -11,4 +11,9 @@ path('account/<int:pk>/edit',
     name="account_edit"
 ),
 
+path('account/me',
+views.AccountTemplateView.as_view(),
+name="account_detail"
+),
+
 ]
